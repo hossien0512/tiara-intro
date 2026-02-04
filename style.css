@@ -1,171 +1,71 @@
-/* =========================
-   Tiara Intro - style.css
-   (Mobile-first / Vercel-safe)
-   ========================= */
-
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{
-  background:#000;
-  overflow:hidden;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
 }
 
-/* ---------- Scene ---------- */
-.scene{
-  position:relative;
-  width:100vw;
-  height:100vh;
-  background:#000;
+body {
+  background: #000;
 }
 
-.layer{
-  position:absolute;
-  inset:0;
+.scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
-/* ---------- Bridge Background ---------- */
-.bridge{
-  /* مسیر ریشه‌ای: روی Vercel همیشه مطمئن */
-  background: url("/bridge.jpg") center/cover no-repeat;
-  transform: scale(1.03);
-  animation: bridgeZoom 10s ease forwards;
+/* پل */
+.bridge {
+  position: absolute;
+  inset: 0;
+  background: url("./bridge.jpg") center/cover no-repeat;
   z-index: 1;
 }
 
-/* ---------- Fog (CSS-made, no PNG) ---------- */
-.fog{
-  /* مه سینمایی با چند گرادیان (بدون فایل PNG) */
-  background:
-    radial-gradient(circle at 28% 40%, rgba(255,255,255,0.18), transparent 62%),
-    radial-gradient(circle at 75% 55%, rgba(255,255,255,0.14), transparent 66%),
-    radial-gradient(circle at 52% 68%, rgba(255,255,255,0.10), transparent 72%),
-    linear-gradient(to bottom, rgba(255,255,255,0.10), transparent 55%);
-  opacity:0;
-  mix-blend-mode: screen;
-  filter: blur(0.4px);
+/* مه */
+.fog {
+  position: absolute;
+  inset: 0;
+  background: url("./fog.png") center/cover repeat;
+  opacity: 0.6;
+  animation: fogMove 20s linear infinite;
+  z-index: 2;
+}
+
+@keyframes fogMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-200px); }
+}
+
+/* تیتر */
+.title {
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 42px;
   z-index: 3;
-
-  animation: fogIn 2.4s ease forwards, fogDrift 18s linear infinite;
-  animation-delay: 1.0s, 0s;
 }
 
-/* ---------- Cinematic Color Grade + Vignette ---------- */
-.grade{
-  background:
-    radial-gradient(circle at 55% 45%,
-      rgba(255,190,140,0.22),
-      rgba(0,0,0,0.72) 60%,
-      rgba(0,0,0,0.92) 100%
-    );
-  opacity:0;
-  z-index: 4;
-  animation: gradeIn 2.0s ease forwards;
-  animation-delay: 1.4s;
+/* منو */
+.menu {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  z-index: 3;
 }
 
-/* ---------- Start Curtain (black intro) ---------- */
-.curtain{
-  position:absolute;
-  inset:0;
-  background:#000;
-  opacity:1;
-  z-index: 10;
-  animation: curtainOut 1.35s ease forwards;
-  animation-delay: 0.35s;
-}
-
-/* ---------- Brand ---------- */
-.brand{
-  position:absolute;
-  top:48px;
-  left:0;
-  right:0;
-  text-align:center;
-  pointer-events:none;
-
-  opacity:0;
-  transform: translateY(-8px);
-  z-index: 9;
-
-  animation: logoIn 1.0s ease forwards;
-  animation-delay: 2.3s;
-}
-
-.title{
-  color:#fff;
-  font-size:52px;
-  font-weight:500;
-  letter-spacing:0.5px;
-  text-shadow: 0 10px 30px rgba(0,0,0,0.45);
-}
-
-/* ---------- Menu ---------- */
-.menu{
-  position:absolute;
-  left:18px;
-  right:18px;
-  bottom:42px;
-
-  display:flex;
-  gap:12px;
-  justify-content:space-between;
-  align-items:center;
-
-  opacity:0;
-  transform: translateY(46px);
-  z-index: 9;
-
-  animation: menuUp 1.15s ease forwards;
-  animation-delay: 2.0s;
-}
-
-.menu-item{
-  flex:1;
-  padding:14px 10px;
-
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,0.22);
-  background: rgba(0,0,0,0.30);
-  color:#fff;
-
-  font-size:18px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-
-/* small phones */
-@media (max-width: 360px){
-  .title{font-size:44px}
-  .menu-item{font-size:16px;padding:12px 8px}
-}
-
-/* ---------- Animations ---------- */
-@keyframes curtainOut{
-  to{opacity:0}
-}
-
-@keyframes bridgeZoom{
-  to{transform: scale(1.08)}
-}
-
-@keyframes fogIn{
-  to{opacity:0.35}
-}
-
-@keyframes fogDrift{
-  from{ transform: translate3d(-2%, 0, 0) }
-  to  { transform: translate3d( 2%, 0, 0) }
-}
-
-@keyframes gradeIn{
-  to{opacity:1}
-}
-
-@keyframes logoIn{
-  to{opacity:1; transform: translateY(0)}
-}
-
-@keyframes menuUp{
-  to{opacity:1; transform: translateY(0)}
+.menu button {
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.5);
+  color: white;
+  font-size: 14px;
 }
