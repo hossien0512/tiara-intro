@@ -1,101 +1,150 @@
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: black;
-  overflow: hidden;
-  font-family: serif;
+/* ========== Base ========== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:#000;
+  overflow:hidden;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
 }
 
-.scene {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
+/* ========== Scene ========== */
+.scene{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  background:#000;
 }
 
-/* پل */
-.bridge {
-  position: absolute;
-  inset: 0;
-  background: url("bridge.jpg") center/cover no-repeat;
-  animation: slowZoom 8s ease forwards;
+/* لایه‌ها */
+.layer{
+  position:absolute;
+  inset:0;
 }
 
-/* مه */
-.fog {
-  position: absolute;
-  inset: 0;
-  background: url("fog.png") repeat;
-  opacity: 0;
-  animation: fogIn 3s ease forwards, fogMove 25s linear infinite;
+/* پل (حتماً با مسیر ریشه‌ای) */
+.bridge{
+  background: url("/bridge.jpg") center/cover no-repeat;
+  transform: scale(1.03);
+  animation: bridgeZoom 10s ease forwards;
 }
 
-/* نور صبح */
-.sunrise {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center,
-    rgba(255,180,120,0.25),
-    rgba(0,0,0,0.75)
-  );
-  opacity: 0;
-  animation: sunriseIn 3s ease forwards;
-  animation-delay: 2s;
+/* مه (PNG ترنسپرنت) */
+.fog{
+  background: url("/fog.png") repeat;
+  opacity:0;
+  mix-blend-mode: screen;
+  filter: blur(0.3px);
+  animation: fogIn 2.5s ease forwards, fogMove 22s linear infinite;
+  animation-delay: 1.2s, 0s;
 }
 
-/* لوگو */
-.logo {
-  position: absolute;
-  top: 40px;
-  width: 100%;
-  text-align: center;
-  font-size: 48px;
-  color: white;
-  opacity: 0;
-  animation: logoIn 1.5s ease forwards;
-  animation-delay: 4.5s;
+/* رنگ و وینیت سینمایی */
+.grade{
+  background:
+    radial-gradient(circle at 55% 45%,
+      rgba(255,190,140,0.22),
+      rgba(0,0,0,0.75) 60%,
+      rgba(0,0,0,0.92) 100%
+    );
+  opacity:0;
+  animation: gradeIn 2.2s ease forwards;
+  animation-delay: 1.6s;
 }
 
-/* منو */
-.menu {
-  position: absolute;
-  bottom: 80px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  color: white;
-  font-size: 28px;
-  opacity: 0;
-  transform: translateY(100%);
-  animation: menuUp 1.5s ease forwards;
-  animation-delay: 3s;
+/* پرده مشکی ابتدای ورود */
+.curtain{
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:1;
+  animation: curtainOut 1.4s ease forwards;
+  animation-delay: 0.4s;
 }
 
-/* انیمیشن‌ها */
-@keyframes slowZoom {
-  to { transform: scale(1.03); }
+/* ========== Brand (Logo) ========== */
+.brand{
+  position:absolute;
+  top:48px;
+  right:0;
+  left:0;
+  text-align:center;
+  pointer-events:none;
+  opacity:0;
+  transform: translateY(-6px);
+  animation: logoIn 1.1s ease forwards;
+  animation-delay: 2.8s;
 }
 
-@keyframes fogIn {
-  to { opacity: 0.6; }
+.title{
+  color:#fff;
+  font-size:52px;
+  font-weight:500;
+  letter-spacing:0.5px;
+  text-shadow: 0 10px 30px rgba(0,0,0,0.45);
 }
 
-@keyframes fogMove {
-  from { background-position: 0 0; }
-  to { background-position: 300px 0; }
+/* ========== Menu ========== */
+.menu{
+  position:absolute;
+  left:18px;
+  right:18px;
+  bottom:42px;
+
+  display:flex;
+  gap:12px;
+  justify-content:space-between;
+  align-items:center;
+
+  opacity:0;
+  transform: translateY(40px);
+  animation: menuUp 1.2s ease forwards;
+  animation-delay: 2.2s;
 }
 
-@keyframes sunriseIn {
-  to { opacity: 1; }
+.menu-item{
+  flex:1;
+  padding:14px 10px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,0.20);
+  background: rgba(0,0,0,0.32);
+  color:#fff;
+  font-size:18px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
-@keyframes logoIn {
-  to { opacity: 1; }
+/* گوشی‌های خیلی کوچیک */
+@media (max-width: 360px){
+  .title{font-size:44px}
+  .menu-item{font-size:16px;padding:12px 8px}
 }
 
-@keyframes menuUp {
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+/* ========== Animations ========== */
+@keyframes curtainOut{
+  to{opacity:0}
+}
+
+@keyframes bridgeZoom{
+  to{transform: scale(1.08)}
+}
+
+@keyframes fogIn{
+  to{opacity:0.35}
+}
+
+@keyframes fogMove{
+  from{background-position: 0 0}
+  to{background-position: 280px 0}
+}
+
+@keyframes gradeIn{
+  to{opacity:1}
+}
+
+@keyframes logoIn{
+  to{opacity:1; transform: translateY(0)}
+}
+
+@keyframes menuUp{
+  to{opacity:1; transform: translateY(0)}
 }
