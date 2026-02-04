@@ -1,27 +1,41 @@
-<!DOCTYPE html>
-<html lang="fa">
+<!doctype html>
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tiara</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tiara Intro</title>
+
+  <!-- ضد کش -->
+  <link rel="stylesheet" href="/style.css?v=1" />
 </head>
 <body>
 
-<div class="scene">
-  <div class="bridge"></div>
-  <div class="fog"></div>
-  <div class="sunrise"></div>
+  <main class="scene">
+    <!-- بک‌گراند پل -->
+    <div class="layer bridge" aria-hidden="true"></div>
 
-  <div class="logo">تیارا</div>
+    <!-- مه -->
+    <div class="layer fog" aria-hidden="true"></div>
 
-  <div class="menu">
-    <div>غذاها</div>
-    <div>نوشیدنی گرم</div>
-    <div>نوشیدنی سرد</div>
-    <div>میان‌وعده</div>
-  </div>
-</div>
+    <!-- وینیت + تون صبح -->
+    <div class="layer grade" aria-hidden="true"></div>
+
+    <!-- پرده مشکی ابتدای ورود -->
+    <div class="curtain" aria-hidden="true"></div>
+
+    <!-- لوگو -->
+    <header class="brand">
+      <h1 class="title">تیارا</h1>
+    </header>
+
+    <!-- منوی اولیه -->
+    <nav class="menu" aria-label="منوی اصلی">
+      <button class="menu-item">غذاها</button>
+      <button class="menu-item">نوشیدنی گرم</button>
+      <button class="menu-item">نوشیدنی سرد</button>
+      <button class="menu-item">میان‌وعده</button>
+    </nav>
+  </main>
 
 </body>
 </html>
