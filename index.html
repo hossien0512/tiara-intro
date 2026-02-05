@@ -1,26 +1,32 @@
-<!DOCTYPE html>
-<html lang="fa">
+<!doctype html>
+<html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tiara</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- ضدِ کش -->
+  <link rel="stylesheet" href="/style.css?v=20260205-1" />
 </head>
 <body>
 
-  <div class="scene">
-    <div class="bridge"></div>
-    <div class="fog"></div>
+  <main class="scene">
+    <div class="bridge" aria-hidden="true"></div>
+    <div class="fog" aria-hidden="true"></div>
+    <div class="grade" aria-hidden="true"></div>
+    <div class="curtain" aria-hidden="true"></div>
 
-    <h1 class="title">تیارا</h1>
+    <header class="brand">
+      <h1 class="title">تیارا</h1>
+    </header>
 
-    <div class="menu">
-      <button>غذاها</button>
-      <button>نوشیدنی گرم</button>
-      <button>نوشیدنی سرد</button>
-      <button>میان‌وعده</button>
-    </div>
-  </div>
+    <nav class="menu" aria-label="منو">
+      <button class="btn">غذاها</button>
+      <button class="btn">نوشیدنی گرم</button>
+      <button class="btn">نوشیدنی سرد</button>
+      <button class="btn">میان‌وعده</button>
+    </nav>
+  </main>
 
 </body>
 </html>
